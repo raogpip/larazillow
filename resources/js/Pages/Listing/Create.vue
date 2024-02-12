@@ -1,72 +1,84 @@
 <template>
     <form @submit.prevent="create">
-        <div>
-            <div>
-                <label>Beds</label>
-                <input type="text" v-model.number="form.beds" />
-                <div v-if="form.errors.beds">
-                    {{ form.errors.beds }}
-                </div>
+        <div class="grid grid-cols-6 gap-4">
+            <div class="col-span-2">
+                <label class="label">Beds</label>
+                <input type="text" v-model.number="form.beds" class="input" />
+                <ErrorMessage
+                    v-if="form.errors.beds"
+                    :error="form.errors.beds"
+                />
             </div>
 
-            <div>
-                <label>Baths</label>
-                <input type="text" v-model.number="form.baths" />
-                <div v-if="form.errors.baths">
-                    {{ form.errors.baths }}
-                </div>
+            <div class="col-span-2">
+                <label class="label">Baths</label>
+                <input type="text" v-model.number="form.baths" class="input" />
+                <ErrorMessage
+                    v-if="form.errors.baths"
+                    :error="form.errors.baths"
+                />
             </div>
 
-            <div>
-                <label>Area</label>
-                <input type="text" v-model.number="form.area" />
-                <div v-if="form.errors.area">
-                    {{ form.errors.area }}
-                </div>
+            <div class="col-span-2">
+                <label class="label">Area</label>
+                <input type="text" v-model.number="form.area" class="input" />
+                <ErrorMessage
+                    v-if="form.errors.area"
+                    :error="form.errors.area"
+                />
             </div>
 
-            <div>
-                <label>City</label>
-                <input type="text" v-model="form.city" />
-                <div v-if="form.errors.city">
-                    {{ form.errors.city }}
-                </div>
+            <div class="col-span-4">
+                <label class="label">City</label>
+                <input type="text" v-model="form.city" class="input" />
+                <ErrorMessage
+                    v-if="form.errors.city"
+                    :error="form.errors.city"
+                />
             </div>
 
-            <div>
-                <label>Post Code</label>
-                <input type="text" v-model="form.code" />
-                <div v-if="form.errors.code">
-                    {{ form.errors.code }}
-                </div>
+            <div class="col-span-2">
+                <label class="label">Post Code</label>
+                <input type="text" v-model="form.code" class="input" />
+                <ErrorMessage
+                    v-if="form.errors.code"
+                    :error="form.errors.code"
+                />
             </div>
 
-            <div>
-                <label>Street</label>
-                <input type="text" v-model="form.street" />
-                <div v-if="form.errors.street">
-                    {{ form.errors.street }}
-                </div>
+            <div class="col-span-4">
+                <label class="label">Street</label>
+                <input type="text" v-model="form.street" class="input" />
+                <ErrorMessage
+                    v-if="form.errors.street"
+                    :error="form.errors.street"
+                />
             </div>
 
-            <div>
-                <label>Street Nr</label>
-                <input type="text" v-model.number="form.street_nr" />
-                <div v-if="form.errors.street_nr">
-                    {{ form.errors.street_nr }}
-                </div>
+            <div class="col-span-2">
+                <label class="label">Street Nr</label>
+                <input
+                    type="text"
+                    v-model.number="form.street_nr"
+                    class="input"
+                />
+                <ErrorMessage
+                    v-if="form.errors.street_nr"
+                    :error="form.errors.street_nr"
+                />
             </div>
 
-            <div>
-                <label>Price</label>
-                <input type="text" v-model.number="form.price" />
-                <div v-if="form.errors.price">
-                    {{ form.errors.price }}
-                </div>
+            <div class="col-span-6">
+                <label class="label">Price</label>
+                <input type="text" v-model.number="form.price" class="input" />
+                <ErrorMessage
+                    v-if="form.errors.price"
+                    :error="form.errors.price"
+                />
             </div>
 
-            <div>
-                <button type="submit">Create</button>
+            <div class="col-span-6">
+                <button type="submit" class="btn-primary">Create</button>
             </div>
         </div>
     </form>
@@ -74,6 +86,7 @@
 
 <script setup>
 import { useForm } from "@inertiajs/vue3";
+import ErrorMessage from "@/Components/ErrorMessage.vue";
 
 const form = useForm({
     beds: 0,
