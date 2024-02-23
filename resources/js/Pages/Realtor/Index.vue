@@ -4,7 +4,13 @@
         <RealtorFilters :filters="filters" />
     </section>
     <section class="grid grid-cols-1 lg:grid-cols-2 gap-2">
-        <Box v-for="listing in listings.data" :key="listing.id">
+        <Box
+            v-for="listing in listings.data"
+            :key="listing.id"
+            :class="{
+                'border border-red-200 dark:border-red-900': listing.deleted_at,
+            }"
+        >
             <div
                 class="flex flex-col md:flex-row gap-2 md:items-center justify-between"
             >
