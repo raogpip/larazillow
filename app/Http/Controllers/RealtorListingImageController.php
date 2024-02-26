@@ -2,9 +2,10 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Controllers\Controller;
 use App\Models\Listing;
+use App\Models\ListingImage;
 use Illuminate\Http\Request;
+use App\Http\Controllers\Controller;
 
 class RealtorListingImageController extends Controller
 {
@@ -18,6 +19,16 @@ class RealtorListingImageController extends Controller
 
     public function store(Listing $listing, Request $request)
     {
-        dd('works');
+        if ($request->hasFile('images')) {
+            foreach ($request->file('images') as $file) {
+                $path = $file->store('images', 'public');
+
+                $listing->images()->save(new ListingImage([
+                    'filename' => $path
+                ]));
+            }
+        }
+
+        return redirect()->back()->with('success', 'Images uploaded!');
     }
 }
