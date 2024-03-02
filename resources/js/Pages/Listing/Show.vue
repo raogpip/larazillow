@@ -19,6 +19,7 @@
                 <ListingSpace :listing="listing" class="text-lg" />
                 <ListingAddress :listing="listing" class="text-gray-400" />
             </Box>
+
             <Box>
                 <template #header> Monthly payment </template>
                 <div>
@@ -76,6 +77,8 @@
                     </div>
                 </div>
             </Box>
+
+            <MakeOffer :listing-id="listing.id" :price="listing.price" />
         </div>
     </div>
 </template>
@@ -85,6 +88,7 @@ import ListingAddress from "@/Components/ListingAddress.vue";
 import Price from "@/Components/Price.vue";
 import ListingSpace from "@/Components/ListingSpace.vue";
 import Box from "@/Components/UI/Box.vue";
+import MakeOffer from "@/Pages/Listing/Show/Components/MakeOffer.vue";
 
 import { ref } from "vue";
 import { useMonthlyPayment } from "@/Composables/useMonthlyPayment.js";
