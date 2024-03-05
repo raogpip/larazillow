@@ -82,6 +82,7 @@
                 v-if="user"
                 :listing-id="listing.id"
                 :price="listing.price"
+                @offer-updated="offer = $event"
             />
         </div>
     </div>
@@ -106,12 +107,14 @@ const props = defineProps({
     listing: Object,
 });
 
+const offer = ref(props.listing.price);
+
 const { monthlyPayment, totalPaid, totalInterest } = useMonthlyPayment(
-    props.listing.price,
+    offer,
     interestRate,
     duration
 );
 
 const page = usePage();
-const user = computed(() => page.props.value.user);
+const user = computed(() => page.props.user);
 </script>
